@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>TodoList App</title>
+</head>
+
+<body>
+    <%- include('./partials/header.ejs') %>
+    <div class="container">
+        <h3 style="text-align: center;"><code>Type "clear" to remove all tasks</code></h3>
+        <div id="newtask">
+            <form action="/" method="post">
+                <input type="text" name="itemInput" placeholder="Add Tasks">
+                <button id="push">Add</button>
+            </form>
+        </div>
+
+        <% for(i=0; i < itemsArr.length; i++) { %>
+
+            <div class="task">
+                <span id="taskname">
+                    <%= itemsArr[i] %>
+                </span>
+                <button class="delete" name="btn">
+                    <i class="far fa-trash-alt">X</i>
+                </button>
+            </div>
+            <% } %>
+    </div>
+
+    <script>
+        var checked = document.querySelector('.checked')
+        var current_tasks = document.querySelectorAll(".delete");
+        for (var i = 0; i < current_tasks.length; i++) {
+            current_tasks[i].onclick = function () {
+                this.parentNode.classList.toggle('checked');
+            }
+        }
+    </script>
+
+</body>
+
+</html>
